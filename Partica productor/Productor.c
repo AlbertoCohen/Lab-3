@@ -1,38 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define CANTIDAD_PARTIDA 10
-#define INTERVALO_PRODUCTO 1000
-#define INTERVALO_PARTIDA 5000
-#define LARGO 100
+#include <unistd.h>
+#include "def.h"
+#include "archivos.h"
+#include "clave.h"
+#include "semaforos.h"
 
-int main()
-{
-	char cadena[LARGO]; /* Un array lo suficientemente grande como para guardar la línea más larga del fichero */
-	int nro_producto=0, nro_partida=0;
-	FILE *productor; 
+int main() {
+    char cadena[LARGO];
+    int nro_producto = 0, nro_partida = 0;
+    FILE *productor;
 
-	while(1)
-	{
-		printf("\nPRODUCIMOS-PARTIDA-%04d\n",nro_partida);
-		productor = fopen("producto.txt", "a");
-		if (productor!=NULL)
-		{
-			for (nro_producto=0; nro_producto<CANTIDAD_PARTIDA; nro_producto++)
-			{
-				sprintf(cadena, "PRODUCTO-%04d-%04d\n", nro_partida, nro_producto);
-				printf("%s", cadena);
-				fprintf(productor,"%s",cadena);
-				usleep(INTERVALO_PRODUCTO*1000);
-			}
-			fclose(productor);
-			nro_partida++;
-			printf("\nESPERAMOS\n");
-			usleep(INTERVALO_PARTIDA*1000);
-		}
-		else
-		{
-			perror ("Error al abrir producto.txt");
-		}
-	};
-	return 0;
+    int id_semaforo;
+    id_semaforo = creo_semaforo();
+    inicia_semaforo(id_semaforo, VERDE);
+
+    while (1) {
+        espera_semaforo(id_semaforo);
+
+        printf("\nPRODUCIMOS-PARTIDA-%04d\n", nro_partida);
+        productor = abrirArchivoA("producto.txt");
+        if (productor != NULL) {
+            for (nro_producto = 0; nro_producto < CANTIDAD_PARTIDA; nro_producto++) {
+                escribirEnBuffer(cadena, LARGO, "PRODUCTO-%04d-%04d\n", nro_partida, nro_producto);
+                printf("%s", cadena);
+                escribirEnArchivo(productor, cadena);
+                usleep(INTERVALO_PRODUCTO * 1000);
+            }
+            cerrarArchivo(productor);
+            nro_partida++;
+            printf("\nESPERAMOS\n");
+        } else {
+            manejarError("Error al abrir producto.txt");
+        }
+
+        levanta_semaforo(id_semaforo);
+        usleep(INTERVALO_PARTIDA * 1000);
+    }
+
+    return 0;
 }
