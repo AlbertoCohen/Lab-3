@@ -1,4 +1,7 @@
 #include "archivos.h"
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 FILE* abrirArchivoW(const char *nombre) {
     FILE *fp = fopen(nombre, "w");
