@@ -4,7 +4,7 @@ HEADERS = -I./
 SRC = archivos.c clave.c semaforos.c
 SRH = archivos.h clave.h semaforos.h
 
-all: productor consumidor clean
+all: clean productor consumidor
 
 productor: productor.c $(SRC) $(SRH)
 	$(CC) -o productor productor.c $(SRC) $(CFLAGS) $(HEADERS)
