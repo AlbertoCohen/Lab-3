@@ -117,8 +117,6 @@ void leerDesdeArchivo(const char *nombreArchivo, const char *formato, int num_va
     {
         printf("%s", cadena);
     }
-
-    fclose(fp);
 }
 
 void escribirEnArchivo(FILE *fp, const char *formato, ...)
