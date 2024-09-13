@@ -15,6 +15,7 @@ void cerrarArchivo(FILE *fp);
 void escribirEnArchivo(FILE *fp, const char *formato, ...);
 void escribirEnBuffer(char *buffer, size_t tamanoBuffer, const char *formato, ...);
 int FinalArchivo(FILE *archivo);
+void leerTodoElArchivo(FILE *fp);
 void eliminarArchivo(const char *nombreArchivo);
 void renombrarArchivo(const char *nombreActual, const char *nuevoNombre);
 void manejarError(const char *mensaje);

@@ -11,7 +11,7 @@
 
 int main() { /*int main(int argc, char *argv[])*/
     FILE *lista;
-
+    char lista_resset[LARGO]; 
     int id_semaforo;
     id_semaforo = creo_semaforo();
     inicia_semaforo(id_semaforo, VERDE);
@@ -26,7 +26,7 @@ int main() { /*int main(int argc, char *argv[])*/
                 leerTodoElArchivo(lista);
             }
             cerrarArchivo(lista);
-            lista_resset= abrirArchivoW(lista);
+            lista_resset = abrirArchivoW(lista);
             cerrarArchivo(lista);
         } else {
             manejarError("Error al abrir la lista.txt");

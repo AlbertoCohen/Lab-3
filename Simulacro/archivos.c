@@ -5,6 +5,8 @@
 #include "archivos.h"
 #include "def.h"
 
+
+
 /*  Función para abrir un archivo con el modo indicado. */
 FILE *abrirArchivo(const char *nombre, const char *modo) {
     FILE *fp = fopen(nombre, modo);
