@@ -9,16 +9,11 @@
 #include "clave.h"
 #include "semaforos.h"
 
-struct avion
-{
-int nro_avion;
-char ciudad[LARGO];
-}avion;
-
-int main() {
+int main() { /*int main(int argc, char *argv[])*/
     char cadena[LARGO];
     FILE *lista;
     int id_semaforo;
+    Avion avion;
     id_semaforo = creo_semaforo();
     while (1) {
         espera_semaforo(id_semaforo);

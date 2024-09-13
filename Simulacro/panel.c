@@ -9,7 +9,7 @@
 #include "clave.h"
 #include "semaforos.h"
 
-int main() {
+int main() { /*int main(int argc, char *argv[])*/
     FILE *lista;
 
     int id_semaforo;
