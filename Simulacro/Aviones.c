@@ -9,26 +9,32 @@
 #include "clave.h"
 #include "semaforos.h"
 
-int main() { /*int main(int argc, char *argv[])*/
+struct avion{
+    int nro_avion;
+    char ciudad[LARGO];
+} avion;
+
+int main(int argc, char *argv[]){
     char cadena[LARGO];
+
+    struct avion avion;
     FILE *lista;
     int id_semaforo;
-    Avion avion;
     id_semaforo = creo_semaforo();
-    while (1) {
+    while (1){
         espera_semaforo(id_semaforo);
 
         lista = abrirArchivoA("aviones.txt");
-        if (lista != NULL) {
-            avion.nro_avion =rand();    
+        if (lista != NULL){
+            avion.nro_avion = rand();
             scanf("%s", avion.ciudad);
 
             escribirEnBuffer(cadena, LARGO, "Nro avion: %d Ciudad: %s\n", avion.nro_avion, avion.ciudad);
-            escribirEnArchivo(lista, cadena);
+            escribirEnArchivo(lista, "%s", cadena);
             cerrarArchivo(lista);
             printf("\nESPERAMOS\n");
-
-        }else {
+        }
+        else{
             manejarError("Error al abrir el aviones.txt");
         }
 
