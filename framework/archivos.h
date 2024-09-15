@@ -12,7 +12,7 @@ FILE* abrirArchivoWPlus(const char *nombre);
 FILE* abrirArchivoRPlus(const char *nombre);
 FILE* abrirArchivoAPlus(const char *nombre);
 void cerrarArchivo(FILE *fp);
-void leerTodoElArchivo(FILE *fp):
+void leerTodoElArchivo(FILE *fp);
 void leerDesdeArchivo(const char *nombreArchivo, const char *formato, int num_vars, ...);
 void escribirEnArchivo(FILE *fp, const char *formato, ...);
 void escribirEnBuffer(char *buffer, size_t tamanoBuffer, const char *formato, ...);
