@@ -2,7 +2,7 @@
 #include "clave.h"
 #include "def.h"
 #include <stdio.h>
-key_t creo_clave(){
+key_t creo_clave(int){
     key_t clave;
     clave = ftok("/bin/ls", CLAVE_BASE);
     if (clave == (key_t)-1){
