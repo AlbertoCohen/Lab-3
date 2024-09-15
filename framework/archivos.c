@@ -148,7 +148,7 @@ void escribirEnBuffer(char *buffer, size_t tamanoBuffer, const char *formato, ..
         printf("Advertencia: se intentó escribir más de lo que el buffer puede contener. Se truncará la salida.\n");
         /* Si es mayor, copiamos solo hasta el tamaño del buffer menos 1 para dejar espacio para '\0' */
         strncpy(buffer, bufferTemporal, tamanoBuffer - 1);
-        buffer[tamanoBuffer - 1] = '\0'; // Nos aseguramos de que esté terminada en null
+        buffer[tamanoBuffer - 1] = '\0'; /* Nos aseguramos de que esté terminada en null */
     }
     else{
         /* Si la longitud es válida, copiamos todo al buffer original */
