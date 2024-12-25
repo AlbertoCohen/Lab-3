@@ -22,11 +22,10 @@ int main() {
         if (consumidor != NULL) {
             printf("\nCONSUMIMOS\n");
             while (!esFinalArchivo(consumidor)) {
-                if (leerDesdeArchivo(consumidor, cadena, LARGO)) {
-                    printf("%s\n", cadena);
-                    usleep(INTERVALO_PRODUCTO * 1000);
-                    cant_producto++;
-                }
+                leerDesdeArchivo(consumidor, cadena, LARGO)
+                printf("%s\n", cadena);
+                usleep(INTERVALO_PRODUCTO * 1000);
+                cant_producto++;
             }
             cerrarArchivo(consumidor);
             if (cant_producto > 0) {

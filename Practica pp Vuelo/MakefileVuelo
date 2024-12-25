@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -Wall -std=gnu89 -pedantic-errors
+HEADERS = -I./
+SRC = archivos.c clave.c semaforos.c
+SRH = archivos.h clave.h semaforos.h
+
+all: carga reserva clean
+
+carga: carga.c $(SRC) $(SRH)
+	$(CC) -o carga carga.c $(SRC) $(CFLAGS) $(HEADERS)
+
+reserva: reserva.c $(SRC) $(SRH)
+	$(CC) -o reserva reserva.c $(SRC) $(CFLAGS) $(HEADERS)
+
+clean:
+	rm -f *.o carga reserva
